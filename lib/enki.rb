@@ -28,6 +28,7 @@ module Enki
   class Configuration
     attr_accessor :confluence_url, :confluence_user, :confluence_password
     attr_accessor :snowcrash_binary
+    attr_accessor :erb_template
 
     def initialize
       @snowcrash_path = "snowcrash"

@@ -9,7 +9,7 @@ module Enki
         no_intra_emphasis: true,
       )
 
-      template_file = File.open("templates/confluence.html.erb")
+      template_file = File.open(Enki.configuration.erb_template)
 
       template = ERB.new template_file.read
 

@@ -25,6 +25,14 @@ describe Enki do
 
       expect(Enki.configuration.confluence_url).to eql "conf_url"
     end
+
+    it "sets the confluence url" do
+      Enki.configure do |conf|
+        conf.erb_template = "template_path"
+      end
+
+      expect(Enki.configuration.erb_template).to eql "template_path"
+    end
   end
 
   describe "logging" do
