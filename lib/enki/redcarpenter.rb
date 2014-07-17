@@ -21,8 +21,8 @@ module Enki
     end
 
     def compile_dir(src_dir:, dst_dir:)
-      Dir.glob("#{src_dir}/**/*.yml").each do |src_file|
-        output_file = "#{dst_dir}/#{source_file[%r{src_dir/(.*)\.yml}, 1]}.html"
+      Dir.glob("#{src_dir}/**/*.yml").each do |source_file|
+        output_file = "#{dst_dir}/#{source_file[%r{#{src_dir}/(.*)\.yml}, 1]}.html"
         FileUtils.mkdir_p File.dirname(output_file)
 
         compile_file(source: src_file, output: output_file)

@@ -12,7 +12,7 @@ module Enki
 
     def process_dir(src_dir:)
       confluence_session do |client|
-        Dir.glob("#{src_dir}/**/*html").each do |file|
+        Dir.glob("#{src_dir}/**/*.html").each do |file|
           upload_with_client(file: file, client: client)
         end
       end
