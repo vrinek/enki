@@ -1,3 +1,5 @@
+require 'redcarpet'
+
 module Enki
   module Redcarpenter
     extend self
