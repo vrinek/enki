@@ -40,4 +40,8 @@ module Enki
   end
 end
 
+require 'enki/confluence.rb'
+require 'enki/redcarpenter.rb'
+require 'enki/snowcrasher.rb'
+
 require 'enki/railtie.rb' if defined?(Rails) && Rails::VERSION::MAJOR > 2
