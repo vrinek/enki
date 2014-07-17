@@ -26,7 +26,15 @@ describe Enki do
       expect(Enki.configuration.confluence_url).to eql "conf_url"
     end
 
-    it "sets the confluence url" do
+    it "sets the confluence space" do
+      Enki.configure do |conf|
+        conf.confluence_url = "conf_space"
+      end
+
+      expect(Enki.configuration.confluence_space).to eql "conf_space"
+    end
+
+    it "sets the erb template path" do
       Enki.configure do |conf|
         conf.erb_template = "template_path"
       end
