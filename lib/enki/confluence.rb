@@ -4,7 +4,23 @@ module Enki
   module Confluence
     extend self
 
-    def upload(file:, client:, title: nil, space: nil)
+    def upload(file:, title: nil, space: nil)
+      confluence_session do |client|
+        upload_with_client(file: file, client: client, title: title, space: space)
+      end
+    end
+
+    def process_dir(dir)
+      confluence_session do |client|
+        Dir.glob("#{dir}/**/*html").each do |file|
+          upload_with_client(file: file, client: client)
+        end
+      end
+    end
+
+    private
+
+    def upload_with_client(file:, client:, title: nil, space: nil)
       title ||= File.basename(file, '.*')
       space ||= Enki.configuration.confluence_space
 
@@ -37,15 +53,6 @@ module Enki
       Enki.logger.log "Done!"
     end
 
-    def process_dir(dir)
-      confluence_session do |client|
-        Dir.glob("#{dir}/**/*html").each do |file|
-          upload(file: file, client: client)
-        end
-      end
-    end
-
-    private
     def confluence_session
       options = {
         url: Enki.configuration.confluence_url,
