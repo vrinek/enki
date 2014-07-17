@@ -3,7 +3,7 @@ module Enki
     extend self
 
     def compile_file(source:, output:, format: "yaml")
-      result = `#{Enki.configuration.snowcrash_binary} --output #{output} --format #{format} #{source} 2>&1`
+      result = `#{Enki.configuration.snowcrash_binary} --output '#{output}' --format #{format} '#{source}' 2>&1`
 
       unless $?.success?
         raise "Snowcrasher: Error: #{result}"
