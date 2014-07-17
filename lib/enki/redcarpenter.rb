@@ -25,7 +25,7 @@ module Enki
         output_file = "#{dst_dir}/#{source_file[%r{#{src_dir}/(.*)\.yml}, 1]}.html"
         FileUtils.mkdir_p File.dirname(output_file)
 
-        compile_file(source: src_file, output: output_file)
+        compile_file(source: source_file, output: output_file)
       end
     end
   end
