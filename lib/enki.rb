@@ -34,7 +34,6 @@ module Enki
     attr_accessor :erb_template
 
     def initialize
-      @snowcrash_path = "snowcrash"
       @erb_template = File.join File.dirname(__FILE__), "templates/default.html.erb"
     end
   end
