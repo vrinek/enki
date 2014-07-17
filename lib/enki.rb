@@ -1,6 +1,8 @@
-require "enki/version"
+require 'enki/version'
 require 'logger'
-require "confluencer"
+require 'erb'
+require 'yaml'
+require 'confluencer'
 
 module Enki
   class << self
