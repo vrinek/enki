@@ -34,7 +34,7 @@ module Enki
       end
 
       if old_page
-        Enki.logger.log "Updating #{old_page["title"].inspect} in #{old_page["space"].inspect}..."
+        Enki.logger.info "Updating #{old_page["title"].inspect} in #{old_page["space"].inspect}..."
         client.update_page({
           "id" => old_page["id"],
           "space" => old_page["space"],
@@ -43,14 +43,14 @@ module Enki
           "version" => old_page["version"],
         }, {})
       else
-        Enki.logger.log "Creating #{title.inspect} in #{space.inspect}..."
+        Enki.logger.info "Creating #{title.inspect} in #{space.inspect}..."
         client.store_page({
           "space" => space,
           "title" => title,
           "content" => content,
         })
       end
-      Enki.logger.log "Done!"
+      Enki.logger.info "Done!"
     end
 
     def confluence_session
