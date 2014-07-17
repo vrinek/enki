@@ -4,8 +4,8 @@ module Enki
 
     def compile_file(source:, output:)
       @data = YAML.load_file(source)
-      @markdown = Redcarpet::Markdown.new(
-        Redcarpet::Render::HTML,
+      @markdown = ::Redcarpet::Markdown.new(
+        ::Redcarpet::Render::HTML,
         no_intra_emphasis: true,
       )
 
