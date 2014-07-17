@@ -1,6 +1,6 @@
 namespace :enki do
   desc "Generate AST files"
-  task :generate_ast do
+  task :generate_ast => :environment do
     Enki::Snowcrasher.compile_dir(src_dir: "doc", dst_dir: "doc_ast")
   end
 
