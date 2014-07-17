@@ -4,29 +4,44 @@ module Enki
   module Confluence
     extend self
 
-    def upload(options = {})
-      file = options.delete(:file)
-      title = options.delete(:title) || File.basename(file, '.*')
-      space = options.delete(:space) || Enki.configuration.confluence_space
+    def upload(file:, client:, title: nil, space: nil)
+      title ||= File.basename(file, '.*')
+      space ||= Enki.configuration.confluence_space
 
       content = File.read(file)
 
-      page = Confluence::Page.new({
-        space: space,
-        title: title,
-        content: content
-      })
+      old_page = begin
+        client.get_page(space, title)
+      rescue Confluence::Error
+        # Page does not exist yet
+        nil
+      end
 
-      Enki.logger.log "Uploading page #{title.inspect}..."
-      page.store
+      if old_page
+        Enki.logger.log "Updating #{old_page["title"].inspect} in #{old_page["space"].inspect}..."
+        client.update_page({
+          "id" => old_page["id"],
+          "space" => old_page["space"],
+          "title" => old_page["title"],
+          "content" => content,
+          "version" => old_page["version"],
+        }, {})
+      else
+        Enki.logger.log "Creating #{title.inspect} in #{space.inspect}..."
+        client.store_page({
+          "space" => space,
+          "title" => title,
+          "content" => content,
+        })
+      end
       Enki.logger.log "Done!"
     end
   end
 
   def process_dir(dir)
-    confluence_session do
+    confluence_session do |client|
       Dir.glob("#{dir}/**/*html").each do |file|
-        upload(file: file)
+        upload(file: file, client: client)
       end
     end
   end
