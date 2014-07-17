@@ -28,7 +28,7 @@ module Enki
 
       old_page = begin
         client.get_page(space, title)
-      rescue Confluence::Error
+      rescue ::Confluence::Error
         # Page does not exist yet
         nil
       end
