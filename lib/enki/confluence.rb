@@ -18,9 +18,9 @@ module Enki
           content: content
         })
 
-        puts "Uploading page #{title.inspect}..."
+        Enki.logger.log "Uploading page #{title.inspect}..."
         page.store
-        puts "Done!"
+        Enki.logger.log "Done!"
       end
     end
   end
