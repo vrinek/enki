@@ -11,16 +11,22 @@ module Enki
 
       content = File.read(file)
 
-      confluence_session do
-        page = Confluence::Page.new({
-          space: space,
-          title: title,
-          content: content
-        })
+      page = Confluence::Page.new({
+        space: space,
+        title: title,
+        content: content
+      })
 
-        Enki.logger.log "Uploading page #{title.inspect}..."
-        page.store
-        Enki.logger.log "Done!"
+      Enki.logger.log "Uploading page #{title.inspect}..."
+      page.store
+      Enki.logger.log "Done!"
+    end
+  end
+
+  def process_dir(dir)
+    confluence_session do
+      Dir.glob("#{dir}/**/*html").each do |file|
+        upload(file: file)
       end
     end
   end
