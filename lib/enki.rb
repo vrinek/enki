@@ -2,7 +2,6 @@ require 'enki/version'
 require 'logger'
 require 'erb'
 require 'yaml'
-require 'confluencer'
 
 module Enki
   class << self
@@ -26,7 +25,11 @@ module Enki
   end
 
   class Configuration
-    attr_accessor :confluence_url, :confluence_user, :confluence_password
+    attr_accessor :confluence_url,
+      :confluence_user,
+      :confluence_password,
+      :confluence_space
+
     attr_accessor :snowcrash_binary
     attr_accessor :erb_template
 
