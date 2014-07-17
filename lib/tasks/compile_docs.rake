@@ -11,6 +11,6 @@ namespace :enki do
 
   desc "Upload documentation to confluence"
   task :upload_to_confluence => :ast_to_html do
-    Enki::Confluence.process_dir("doc_html")
+    Enki::Confluence.process_dir(src_dir: "doc_html")
   end
 end
