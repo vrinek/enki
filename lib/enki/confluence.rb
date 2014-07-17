@@ -36,26 +36,26 @@ module Enki
       end
       Enki.logger.log "Done!"
     end
-  end
 
-  def process_dir(dir)
-    confluence_session do |client|
-      Dir.glob("#{dir}/**/*html").each do |file|
-        upload(file: file, client: client)
+    def process_dir(dir)
+      confluence_session do |client|
+        Dir.glob("#{dir}/**/*html").each do |file|
+          upload(file: file, client: client)
+        end
       end
     end
-  end
 
-  private
-  def confluence_session
-    options = {
-      url: Enki.configuration.confluence_url,
-      username: Enki.configuration.confluence_user,
-      password: Enki.configuration.confluence_password
-    }
+    private
+    def confluence_session
+      options = {
+        url: Enki.configuration.confluence_url,
+        username: Enki.configuration.confluence_user,
+        password: Enki.configuration.confluence_password
+      }
 
-    Confluence::Session.new(options) do |client|
-      yield(client)
+      Confluence::Session.new(options) do |client|
+        yield(client)
+      end
     end
   end
 end
