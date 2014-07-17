@@ -60,7 +60,7 @@ module Enki
         password: Enki.configuration.confluence_password
       }
 
-      Confluence::Session.new(options) do |client|
+      ::Confluence::Session.new(options) do |client|
         yield(client)
       end
     end
