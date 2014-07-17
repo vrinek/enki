@@ -1,0 +1,71 @@
+<p><ac:structured-macro ac:name="toc"><ac:parameter ac:name="maxLevel">3</ac:parameter></ac:structured-macro></p>
+
+<h3>Overview</h3>
+<%=@markdown.render @data['description'] %>
+
+<% @data['resourceGroups'].each do |group| %>
+  <% group['resources'].each do |resource| %>
+    <% resource['actions'].each do |action| %>
+      <h3><%= action['method'] %> <%= resource['uriTemplate'] %></h3>
+
+      <h5>Description</h5>
+      <%=@markdown.render action['description'] %>
+
+      <% if action['parameters'] %>
+        <h5>Parameters</h5>
+        <table>
+          <tbody>
+            <tr>
+              <th><p>Name</p></th>
+              <th><p>Type</p></th>
+              <th><p>Default</p></th>
+              <th><p>Example</p></th>
+              <th><p>Mandatory</p></th>
+              <th><p>Description</p></th>
+            </tr>
+            <% action['parameters'].each do |parameter| %>
+              <tr>
+                <td><p><%= parameter['name'] %></p></td>
+                <td><p><%= parameter['type'] %></p></td>
+                <td><p><%= parameter['default'] %></p></td>
+                <td><p><%= parameter['example'] %></p></td>
+                <td><p><%= parameter['required'] and 'yes' or 'no' %></p></td>
+                <td><%=@markdown.render parameter['description'] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
+
+      <% if action['examples'] %>
+        <% action['examples'].each do |example| %>
+          <% if example['responses'] %>
+            <h5>Response codes</h5>
+            <table>
+              <tbody>
+                <tr>
+                  <th><p>Code</p></th>
+                  <th><p>Comment</p></th>
+                  <th><p>Body</p></th>
+                </tr>
+                <% example['responses'].each do |response| %>
+                  <tr>
+                    <td><p><%= response['name'] %></p></td>
+                    <td><%=@markdown.render response['description'].to_s %></td>
+                    <td>
+                      <% if response['body'] %>
+                        <ac:structured-macro ac:name="code"><ac:plain-text-body>
+                          <![CDATA[<%= response['body'] %>]]>
+                        </ac:plain-text-body></ac:structured-macro>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

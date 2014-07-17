@@ -35,6 +35,7 @@ module Enki
 
     def initialize
       @snowcrash_path = "snowcrash"
+      @erb_template = "lib/templates/default.html.erb"
     end
   end
 end

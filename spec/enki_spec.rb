@@ -35,6 +35,9 @@ describe Enki do
     end
 
     it "sets the erb template path" do
+      # has a default template path
+      expect(Enki.configuration.erb_template).to eql "lib/templates/default.html.erb"
+
       Enki.configure do |conf|
         conf.erb_template = "template_path"
       end
