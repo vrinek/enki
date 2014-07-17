@@ -39,3 +39,5 @@ module Enki
     end
   end
 end
+
+require 'enki/railtie.rb' if defined?(Rails) && Rails::VERSION::MAJOR > 2
