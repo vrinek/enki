@@ -18,9 +18,9 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_runtime_dependency "qarioz-confluencer"
-  spec.add_runtime_dependency "redcarpet"
-  spec.add_development_dependency "bundler", "~> 1.6"
-  spec.add_development_dependency "rake"
-  spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_runtime_dependency "qarioz-confluencer", "~> 0.6", '>= 0.6.0'
+  spec.add_runtime_dependency "redcarpet", "~> 3.1", ">= 3.1.2"
+  spec.add_development_dependency "bundler", "~> 1.6", ">= 1.6.0"
+  spec.add_development_dependency "rake", "~> 10.3", ">= 10.3.2"
+  spec.add_development_dependency "rspec", "~> 3.0", ">= 3.0.0"
 end
