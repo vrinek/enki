@@ -1,5 +1,17 @@
 require 'redcarpet'
 
+class EnkiRender < Redcarpet::Render::HTML
+  def block_code(code, language)
+    <<-HTML
+      <ac:structured-macro ac:name="code">
+        <ac:plain-text-body>
+          <![CDATA[#{code}]]>
+        </ac:plain-text-body>
+      </ac:structured-macro>
+    HTML
+  end
+end
+
 module Enki
   module Redcarpenter
     extend self
@@ -7,7 +19,7 @@ module Enki
     def compile_file(source:, output:)
       @data = YAML.load_file(source)
       @markdown = ::Redcarpet::Markdown.new(
-        ::Redcarpet::Render::HTML,
+        EnkiRender,
         no_intra_emphasis: true,
       )
 
