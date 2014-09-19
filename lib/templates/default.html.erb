@@ -8,7 +8,8 @@
 <% @data['resourceGroups'].each do |group| %>
   <h2><%= group['name'] %></h2>
   <hr/>
-  <% group['resources'].each do |resource| %>
+  <%=@markdown.render group['description'] if group['description'] %>
+  <% (group['resources'] || []).each do |resource| %>
     <% resource['actions'].each do |action| %>
       <h3><%= action['method'] %> <%= resource['uriTemplate'] %></h3>
 
