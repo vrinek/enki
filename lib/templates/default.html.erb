@@ -84,7 +84,7 @@
                 </tr>
                 <% example['responses'].each do |response| %>
                   <tr>
-                    <td><%= response['name'] %></td>
+                    <td><b><%= response['name'] %></b> <%= @codes[response['name']] %></td>
                     <td>
                       <%=@markdown.render response['description'].to_s %>
                       <% if response['body'] %>

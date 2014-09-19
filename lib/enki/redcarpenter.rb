@@ -34,6 +34,14 @@ module Enki
         no_intra_emphasis: true,
         tables: true,
       )
+      @codes = {
+        "200" => "OK",
+        "201" => "Created",
+        "204" => "No Content",
+        "400" => "Bad Request",
+        "403" => "Forbidden",
+        "404" => "Forbidden",
+      }
 
       template_file = File.open(Enki.configuration.erb_template)
 
