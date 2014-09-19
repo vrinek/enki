@@ -10,6 +10,17 @@ class EnkiRender < Redcarpet::Render::HTML
       </ac:structured-macro>
     HTML
   end
+
+  def table(header, body)
+    <<-HTML
+      <table>
+        <tbody>
+          #{header}
+          #{body}
+        </tbody>
+      </table>
+    HTML
+  end
 end
 
 module Enki
@@ -21,6 +32,7 @@ module Enki
       @markdown = ::Redcarpet::Markdown.new(
         EnkiRender,
         no_intra_emphasis: true,
+        tables: true,
       )
 
       template_file = File.open(Enki.configuration.erb_template)
