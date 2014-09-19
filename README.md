@@ -1,6 +1,8 @@
 # Enki
 
-Enki helps avoid Confluence-related pains by moving your API documentation to your code base (`doc/xxx.md`) while allowing easy and painless upload to Confluence.
+Enki makes it easy to keep your API documentation on your codebase while keeping a view of it on Confluence.
+
+Heavily depends on https://github.com/apiaryio/snowcrash and https://github.com/qarioz/confluencer.
 
 ## Installation
 
