@@ -6,8 +6,8 @@ require 'enki/version'
 Gem::Specification.new do |spec|
   spec.name          = "enki"
   spec.version       = Enki::VERSION
-  spec.authors       = ["Giorgos Avramidis"]
-  spec.email         = ["avramidg@gmail.com"]
+  spec.authors       = ["Giorgos Avramidis", "Kostas Karachalios"]
+  spec.email         = ["avramidg@gmail.com", "vrinek@me.com"]
   spec.summary       = %q{Provide snowcrash and confluence integration}
   spec.description   = %q{}
   spec.homepage      = ""
